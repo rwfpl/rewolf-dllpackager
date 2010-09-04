@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+Helper functions:
+
+ - rva2raw - converts RVA to raw offset
+ - VirtualReAlloc - reallocates virtual memory
+ - DialogProc - dialog proc
+ - WinMain - main
+
+--------------------------------------------------------------------------------
+Packaging functions:
+
+ - genDllStruct - generates DLL structure
+ - Bundle - main packaging functions, comments in source code
+
+--------------------------------------------------------------------------------
