@@ -1,3 +1,4 @@
+```
 --------------------------------------------------------------------------------
 Name....: DLLPackager v1.0.1 - source code
 Author..: ReWolf
@@ -6,12 +7,16 @@ Rel.Date: VI.2007
 
 
 e.mail..: rewolf@poczta.onet.pl
-www.....: http://rewolf.pl
+www.....: http://blog.rewolf.pl
 --------------------------------------------------------------------------------
+```
+Simple tool to bundle DLL's with executable (similar to PEBundle or MoleBox). 'Simple' means there is no encryption or compression. It's coded fully in C++ (also loader).
 
-Finally  source code  is available for  anyone interested. It  is licensed under
-GNU General Public License (see gpl.txt).
+#### **Principle of operation:** ####
+![http://rewolf.pl/gfx/custom/exe_before.png](http://rewolf.pl/gfx/custom/exe_before.png)
+![http://rewolf.pl/gfx/custom/exe_after.png](http://rewolf.pl/gfx/custom/exe_after.png)
 
+```
 --------------------------------------------------------------------------------
 Files:
 
@@ -30,3 +35,7 @@ src\resource.h             - resources header
 src\res.rc                 - resources file
 
 --------------------------------------------------------------------------------
+```
+#### **Related links:** ####
+  * http://blog.rewolf.pl/blog/?p=11
+  * http://blog.rewolf.pl/blog/?p=18
