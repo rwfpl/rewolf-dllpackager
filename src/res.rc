@@ -1,0 +1,42 @@
+/* DLLPackager v1.0
+ * Copyright 2007 ReWolf
+ * Contact:
+ * rewolf@poczta.onet.pl
+ * http://rewolf.pl
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ */
+
+#include "WinUser.h"
+#include "resource.h"
+
+
+IDD_DIALOG1 DIALOGEX 0, 0, 334, 193
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DLLPackager - ReWolf"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        EDIT_FILENAME,4,4,300,12,ES_AUTOHSCROLL | NOT WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "...",BTN_OPEN,308,4,18,12,BS_FLAT
+    LISTBOX         LB_LIBS,4,20,324,72,LBS_NOINTEGRALHEIGHT | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    PUSHBUTTON      "Add Library",BTN_ADDLIB,4,96,66,12,BS_FLAT
+    PUSHBUTTON      "Remove Library",BTN_DELLIB,72,96,66,12,BS_FLAT
+    PUSHBUTTON      "Bundle",BTN_BUNDLE,280,96,48,12,BS_FLAT
+    PUSHBUTTON      "Exit",BTN_EXIT,228,96,48,12,BS_FLAT
+    LISTBOX         LB_LOG,4,112,324,76,LBS_NOINTEGRALHEIGHT | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    PUSHBUTTON      "About",BTN_ABT,176,96,48,12,BS_FLAT
+END
+
+

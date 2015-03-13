@@ -1,0 +1,15 @@
+Add all files from src directory to project.
+Set these options in Visual Studio:
+(tested on VS2k5)
+
+General:
+   Character Set: Not Set
+
+C/C++:
+   Optimization:
+      Inline Function Expansion: Only __inline (/Ob1)
+
+   Code Generation:
+      Buffer Security Check: No (/GS-)
+
+

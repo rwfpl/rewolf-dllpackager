@@ -1,0 +1,105 @@
+--------------------------------------------------------------------------------
+Relocatable helper functions:
+
+ - ldrMemMove
+ - ldrStrLen
+ - ldrUpperCase
+ - ldrStrCmp
+
+--------------------------------------------------------------------------------
+Address retrievers:
+
+ - ldrGetDllStructAddress - returns the address of DLLs structure, DLL structure
+   looks like this:
+
+     DWORD fileSize;              // raw size of DLL, filled during packaging
+     DWORD loadedImageBase;       // image base, filled by loader
+     BYTE* dllOffset;             // virtual address of DLL in executable
+     DWORD lenFilename;           // length of fileName
+     BYTE fileName[lenFilename];  // file name
+
+ - ldrGetRemovedImportsAddress - returns  the  address  of  imports  descriptors
+   removed from original executable
+ - ldrGetFunctionsTable - returns the address of Functions Table. Function Table
+   looks like this:
+
+     DWORD LoadLibraryA;        // LoadLibraryA   function  address,  filled  by
+                                // loader, copied from IAT
+     DWORD GetProcAddress;      // -"-
+     DWORD VirtualAlloc;        // function   address,    filled    by    loader
+                                // (GetProcAddress)
+     DWORD emuGetProcAddress;   // GetPrcAddress  emulation   function  address,
+                                // filled during compilation
+     DWORD emuLoadLibraryA;     // -"-
+     DWORD emuGetModuleHandleA; // -"-
+     DWORD GetModuleHandleA;    // function   address,    filled    by    loader
+                                // (GetProcAddress)
+     DWORD thunkLoadLibraryA;   // +ImageBase,  address   of  address   in  IAT,
+                                // filled during compilation
+     DWORD thunkGetProcAddress; // -"-
+     DWORD oldLLANamePtr;       // +ImageBase, will be explained later
+     DWORD oldGPANamePtr;       // -"-
+     DWORD originalEntryPoint
+     char xchgLLABuf[13];       // will be explained later
+     char xchgGPABuf[15];       // -"-
+
+--------------------------------------------------------------------------------
+Text retrievers:
+
+ - ldrGetGetProcAddressText
+ - ldrGetLoadLibraryAText
+ - ldrGetGetModuleHandleText
+ - ldrGetKernel32Text
+ - ldrGetVirtualAllocText
+ 
+ all functions from this group look like this:
+
+   call  _txt
+   db    'some text',0
+   _txt:
+   pop   eax
+   ret
+
+ it's the simplest way to retrieve const char*, and it's relocatable.
+
+--------------------------------------------------------------------------------
+APIs proxy:
+
+ - ldrVirtualAlloc
+ - ldrLoadLibraryA
+ - ldrGetProcAddress
+ - ldrGetModuleHandleA
+
+ functions from this group look like this:
+
+   call    $+5
+   pop     edx
+   call    ldrGetFunctionsTable
+   add     eax, 4*XX                 ; XX - index in Functions Table
+   sub     edx, 5
+   mov     word ptr [edx], 0x25FF
+   mov     dword ptr [edx+2], eax
+   jmp     edx
+
+ this  function on first  hit will get  address of API from Functions Table, and
+ next it will set:
+
+   jmp   dword ptr [address in Functions Table]
+
+ on the beginning of the function.
+--------------------------------------------------------------------------------
+Emulators:
+
+ - emuLoadLibraryA
+ - emuGetProcAddress
+ - emuGetModuleHandleA
+
+ functions commented in source code
+
+--------------------------------------------------------------------------------
+Others:
+
+ - ldrMain - main loader function, entry point of bundled executable.
+ - dummy - dummy function to count loader size
+
+--------------------------------------------------------------------------------
