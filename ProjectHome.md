@@ -5,6 +5,5 @@ Simple tool to bundle DLL's with executable (similar to PEBundle or MoleBox). 'S
 ![http://rewolf.pl/gfx/custom/exe_after.png](http://rewolf.pl/gfx/custom/exe_after.png)
 
 ## **Related links:** ##
-  * http://www.openrce.org/blog/view/735/DLLPackager_v1.0
-  * http://www.openrce.org/blog/view/784/DLLPackager_v1.0_-_source_code
-  * http://rewolf.pl
+  * http://blog.rewolf.pl/blog/?p=11
+  * http://blog.rewolf.pl/blog/?p=18
